@@ -3,12 +3,14 @@
 #pragma once
 
 
+//ДЕРЕВО, СОДЕРЖАЩЕЕ ОЧЕРЕДИ ШТРАФОВ ПО КАЖДОЙ МАШИНЕ
 class Tree
 {
 private:
 	struct ListElem {
 		List ListCarFines;
-		List* left, * right, * parent;
+		ListElem* left, * right, * parent;
+		string carNum;
 	};
 	ListElem* root;
 public:
@@ -16,32 +18,46 @@ public:
 		root = NULL;
 	};
 
-	// получить информацию об узле
-	template <typename>
-	ListElem getListData();
-
+	
 	ListElem* search(string key) {
-		while (key.compare(root->ListCarFines.getCarNumber()) {
-
+		// копируем значение указателя на корневой элемент (менять значение root нельзя!)
+		ListElem* node = root;
+		while (node!=0 && key.compare(node->carNum)) {
+			if (key.compare(root->carNum) < 0) {
+				node = node->left;
+			}
+			else {
+				node = node->right;
+			}
 		}
+		return node;
 	}
 
 
-
+	//не дописано
 	void addFine(string key) {
-		if (root != NULL) {
+		ListElem* node = root;
+		while (node != 0 && key.compare(node->carNum)) {
+			if (key.compare(root->carNum) < 0) {
+				node = node->left;
+			}
+			else {
+				node = node->right;
+			}
+		}
+		ListElem element;
+		element.carNum = key;
+		element.parent = node;
+		element.left = NULL;
+		element.right = NULL;
+		element.ListCarFines.add();
 
-		}
-		else {
-			ListElem rootTree();
-			*root = &rootTree;
-		}
+
 	}
 
 
 
-	/*~Tree() {
-		del();
-	}*/
+	~Tree() {
+	}
 };
 

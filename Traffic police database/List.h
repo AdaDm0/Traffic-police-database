@@ -2,31 +2,39 @@
 #pragma once
 
 
+// ОЧЕРЕДЬ ШТРАФОВ
 
 class List
 {
 private:
 	//вложенный класс Node состоит из класса Штраф и указателя на след. элемент списка
+	
 	class Node {
-		public: Fine dataFine;	// Данные о штрафе (объект класса штраф)
-				Fine* next;	//указатель на следующий объект в списка
-				Node() {
-					next = NULL;
-				}
-		};
+	public: 
+		Fine dataFine;	// Данные о штрафе (объект класса штраф)
+		Fine* next;	//указатель на следующий объект в списка
+		  //конструктор вложенного класса Node
+		  Node() {
+			  next = NULL;
+		  }
+	};
 	Node* head;	//начало списка
-	Node* tail; 
+	Node* tail;
 	int count;
 public:
 	List() {};
 
-	string getCarNumber() {
-		return List::Node::dataFine
-	}
+
+
+	//получить номер машины
+	/*string getCarNumber() {
+		return
+	}*/
 
 	//добавление элемента
-	void add(Fine f1) {
+	void add() {
 		//сохраняем данные в список
+		Fine f1();
 		Node* temp = new Node;
 		temp->dataFine = f1;
 		temp->next = NULL;
@@ -40,6 +48,7 @@ public:
 		}
 	}
 
+	//получить счетчик элементов списка
 	int getCount() {
 		return count;
 	}
@@ -59,7 +68,5 @@ public:
 			del();
 		}*/
 
-		~List() {};
-	};
-
+	~List() {};
 };
